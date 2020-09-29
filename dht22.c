@@ -228,7 +228,7 @@ struct sensorOutput parseSensorOutput(int GPIO) {
 		// If the sensor query was successful
 		if (querySensor(GPIO, sensorData)) {
 			// Parse the temperature and humidity data
-			result.temperature=(((sensorData[2]*256+sensorData[3])/10)*(9/5))+32;
+			result.temperature=(((sensorData[2]*256+sensorData[3])/10)*9/5)+32;
 			result.humidity=(sensorData[0]*256+sensorData[1])/10;
 
 			// Check and adjust for negative temperatures
