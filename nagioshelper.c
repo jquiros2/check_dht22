@@ -52,7 +52,7 @@ static void throwError(int errorCode) {
 		case ERRCODE_USAGE:
 			fprintf(stderr, "Usage:\n" \
 			"sudo check_dht22 -p <gpio_pin> [-w tmp_warn_range,hum_warn_range] [-c tmp_crit_range,hum_crit_range]\n" \
-			"Example: sudo check_dht22 -p 7 -w 10:40,30:70 -c 5:45,25:75\n");
+			"Example: sudo check_dht22 -p 7 -w 10:40,30:70 -c 5:45,50:80\n");
 			break;
 		case ERRCODE_INVALID_GPIO:
 			fprintf(stderr, "Invalid GPIO pin specified.\n" \
@@ -403,7 +403,7 @@ int outputResults(struct execParameters params, struct sensorOutput output) {
 	}
 
 	// Issue the final response to the user
-	fprintf(stdout, "%s - Temperature: %.1fC Humidity: %.1f%% | tmp=%.1f;%d;%d;0 hum=%.1f;%d;%d;0\n", states[result], output.temperature, output.humidity, output.temperature, params.warn.temperature.max, params.crit.temperature.max, output.humidity, params.warn.humidity.max, params.crit.humidity.max);
+	fprintf(stdout, "%s - Temperature: %.1fF Humidity: %.1f%% | tmp=%.1f;%d;%d;0 hum=%.1f;%d;%d;0\n", states[result], output.temperature, output.humidity, output.temperature, params.warn.temperature.max, params.crit.temperature.max, output.humidity, params.warn.humidity.max, params.crit.humidity.max);
 	fflush(stdout);
 	return result;
 }
